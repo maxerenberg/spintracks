@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/workoutTypeShowFragment">
+
+    <fragment
+        android:id="@+id/PlaylistsShowFragment"
+        android:name="com.example.spintracks.fragments.PlaylistsShowFragment"
+        android:label="Playlists"
+        tools:layout="@layout/fragment_playlists_show">
+
+        <action
+            android:id="@+id/action_PlaylistsShowFragment_to_PlaylistCreateDialogFragment"
+            app:destination="@id/playlist_create_dialog_fragment" />
+        <action
+            android:id="@+id/action_PlaylistsShowFragment_to_playlistSongsShowFragment"
+            app:destination="@id/playlistSongsShowFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/playlist_create_dialog_fragment"
+        android:name="com.example.spintracks.fragments.PlaylistCreateFragment"
+        android:label="Playlist name"
+        tools:layout="@layout/fragment_playlist_create">
+        <action
+            android:id="@+id/action_playlistCreate_to_playlistSource"
+            app:destination="@id/playlistSourceDialogFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/playlistSourceDialogFragment"
+        android:name="com.example.spintracks.fragments.PlaylistSourceFragment"
+        android:label="Playlist source"
+        tools:layout="@layout/fragment_playlist_source">
+        <action
+            android:id="@+id/action_playlistSourceDialogFragment_to_songgroup_outer_fragment"
+            app:destination="@id/songgroup_outer_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/songgroup_outer_fragment"
+        android:name="com.example.spintracks.fragments.SongGroupOuterFragment"
+        android:label="Choose songs"
+        tools:layout="@layout/fragment_songgroup_outer">
+        <action
+            android:id="@+id/action_songgroup_inner_fragment_to_songChooseFragment"
+            app:destination="@id/songChooseFragment" />
+        <action
+            android:id="@+id/action_songgroup_outer_fragment_to_FirstFragment"
+            app:destination="@id/PlaylistsShowFragment"
+            app:popUpTo="@id/PlaylistsShowFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/songChooseFragment"
+        android:name="com.example.spintracks.fragments.SongChooseFragment"
+        android:label="Choose songs"
+        tools:layout="@layout/fragment_song_choose" />
+    <fragment
+        android:id="@+id/playlistSongsShowFragment"
+        android:name="com.example.spintracks.fragments.PlaylistSongsShowFragment"
+        android:label="Songs"
+        tools:layout="@layout/fragment_playlist_songs_show">
+        <action
+            android:id="@+id/action_playlistSongsShowFragment_to_PlaylistShowFragment"
+            app:destination="@id/PlaylistsShowFragment"
+            app:popUpTo="@id/PlaylistsShowFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/workoutTypeShowFragment"
+        android:name="com.example.spintracks.fragments.WorkoutTypeShowFragment"
+        android:label="Workout Type"
+        tools:layout="@layout/fragment_workout_type_show">
+        <action
+            android:id="@+id/action_workoutTypeShowFragment_to_PlaylistsShowFragment"
+            app:destination="@id/PlaylistsShowFragment" />
+    </fragment>
+</navigation>
